@@ -8,7 +8,7 @@ import {
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import LoginPage from "./components/login";
+import LoginPage from "./components/LoginPage";
 import PublicationListPage from "./components/PublicationListPage";
 import AddPublicationPage from "./components/AddPublicationPage";
 import EditPublicationPage from "./components/Edit";
