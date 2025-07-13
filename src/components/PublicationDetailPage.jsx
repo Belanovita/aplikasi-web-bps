@@ -29,16 +29,27 @@ export default function PublicationDetailPage() {
   if (!pub) return null;
 
   return (
-    <div className="max-w-3xl mx-auto bg-white shadow-lg rounded-lg p-6">
-      <h1 className="text-2xl font-bold mb-4 text-gray-800">{pub.title}</h1>
-      <p className="text-gray-500 mb-2">Tanggal Rilis: {pub.releaseDate}</p>
-      {pub.description && <p className="mb-4 text-gray-700">{pub.description}</p>}
+    <div className="max-w-4xl mx-auto bg-white shadow-lg rounded-lg p-6 flex flex-col md:flex-row gap-6">
       <img
         src={pub.coverUrl}
         alt={`Sampul ${pub.title}`}
-        className="w-64 h-auto rounded shadow"
-        onError={e => { e.target.onerror = null; e.target.src = 'https://placehold.co/100x140/cccccc/ffffff?text=Error'; }}
+        className="w-64 h-auto rounded shadow object-cover"
+        onError={e => {
+          e.target.onerror = null;
+          e.target.src = 'https://placehold.co/100x140/cccccc/ffffff?text=Error';
+        }}
       />
+      <div className="flex-1">
+        <h1 className="text-2xl font-bold mb-4 text-gray-800">{pub.title}</h1>
+        <p className="text-gray-500 mb-2">
+          <strong>Tanggal Rilis:</strong> {pub.releaseDate}
+        </p>
+        {pub.description && (
+          <p className="mb-4 text-gray-700 whitespace-pre-line">
+            {pub.description}
+          </p>
+        )}
+      </div>
     </div>
   );
 }
