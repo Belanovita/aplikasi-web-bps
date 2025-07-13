@@ -12,6 +12,7 @@ import LoginPage from "./components/LoginPage";
 import PublicationListPage from "./components/PublicationListPage";
 import AddPublicationPage from "./components/AddPublicationPage";
 import EditPublicationPage from "./components/Edit";
+import PublicationDetailPage from "./components/PublicationDetailPage";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 export default function App() {
@@ -45,6 +46,14 @@ export default function App() {
             element={
               <ProtectedRoute>
                 <EditPublicationPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/publications/detail/:id"
+            element={
+              <ProtectedRoute>
+                <PublicationDetailPage />
               </ProtectedRoute>
             }
           />

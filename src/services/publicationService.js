@@ -1,39 +1,54 @@
 // src/services/publicationService.js
 import apiClient from '../api/axios';
-export const publicationService = {
 
-    async addPublication(newPublication) {
-        try {
-            const response = await apiClient.post('/publikasi',
-                newPublication);
-            return response.data;
-        } catch (error) {
-            throw new Error('Gagal menambahkan data: ' +
-                error.response?.data?.message || 'Terjadi kesalahan');
-        }
-    },
+export const publicationService = {
     async getPublications() {
         try {
             const response = await apiClient.get('/publikasi');
             return response.data;
         } catch (error) {
             throw new Error('Gagal mengambil data: ' +
-                error.response?.data?.message || 'Terjadi kesalahan');
+                (error.response?.data?.message || 'Terjadi kesalahan'));
+        }
+    },
+
+    async addPublication(newPublication) {
+        try {
+            const response = await apiClient.post('/publikasi', newPublication);
+            return response.data;
+        } catch (error) {
+            throw new Error('Gagal menambahkan data: ' +
+                (error.response?.data?.message || 'Terjadi kesalahan'));
+        }
+    },
+
+    async getPublicationById(id) {
+        try {
+            const response = await apiClient.get(`/publikasi/${id}`);
+            return response.data;
+        } catch (error) {
+            throw new Error('Gagal mengambil detail: ' +
+                (error.response?.data?.message || 'Terjadi kesalahan'));
+        }
+    },
+
+    async deletePublication(id) {
+        try {
+            const response = await apiClient.delete(`/publikasi/${id}`);
+            return response.data;
+        } catch (error) {
+            throw new Error('Gagal menghapus publikasi: ' +
+                (error.response?.data?.message || 'Terjadi kesalahan'));
         }
     }
-}
+};
+
 export async function uploadImageToCloudinary(file) {
     const uploadPreset = import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET;
     const cloudName = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
 
-    console.log("DEBUG ENV:", {
-        CLOUD_NAME: import.meta.env.VITE_CLOUDINARY_CLOUD_NAME,
-        PRESET: import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET
-    });
-
-
     if (!uploadPreset || !cloudName) {
-        throw new Error('Cloudinary config missing: cek VITE_CLOUDINARY_UPLOAD_PRESET dan VITE_CLOUDINARY_CLOUD_NAME di.env');
+        throw new Error('Cloudinary config missing: cek .env');
     }
 
     const formData = new FormData();
