@@ -36,7 +36,7 @@ export default function Navbar() {
             <BpsLogo />
             <span className="text-white text-base md:text-lg font-bold
 tracking-wider hidden sm:block">
-              BPS PROVINSI BENGKULU
+              BPS PROVINSI SULAWESI BARAT
             </span>
           </div>
           <div className="flex items-center space-x-2">
