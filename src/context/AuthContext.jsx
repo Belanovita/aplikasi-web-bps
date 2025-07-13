@@ -1,15 +1,16 @@
-// src/context/AuthContext.jsx
-import React, { createContext, useState } from "react";
+import React, { createContext, useState, useContext } from "react";
 import { authService } from "../services/authService";
+
 const AuthContext = createContext(null);
+
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(
         JSON.parse(localStorage.getItem("user")) || null
     );
     const [token, setToken] = useState(localStorage.getItem("token") || null);
     const [loading, setLoading] = useState(false);
-
     const [error, setError] = useState(null);
+
     const loginAction = async (email, password) => {
         setLoading(true);
         setError(null);
@@ -28,6 +29,7 @@ const AuthProvider = ({ children }) => {
             setLoading(false);
         }
     };
+
     const logoutAction = async () => {
         setLoading(true);
         setError(null);
@@ -41,14 +43,16 @@ const AuthProvider = ({ children }) => {
         } catch (error) {
             console.error('Logout error:', error.message);
             setError(error.message);
-            throw error; // Re-throw error agar bisa di-catch di component
+            throw error;
         } finally {
             setLoading(false);
         }
     };
+
     const clearError = () => {
         setError(null);
     };
+
     return (
         <AuthContext.Provider value={{
             user, token, loginAction, logoutAction,
@@ -59,10 +63,9 @@ const AuthProvider = ({ children }) => {
     );
 };
 
-export { AuthContext, AuthProvider };
-
-import { useContext } from "react";
-
-export const useAuth = () => {
+// 🔥 letakkan semuanya sebelum export
+const useAuth = () => {
     return useContext(AuthContext);
-}
+};
+
+export { AuthContext, AuthProvider, useAuth };
