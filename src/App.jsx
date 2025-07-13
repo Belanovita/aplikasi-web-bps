@@ -17,53 +17,64 @@ import ProtectedRoute from "./components/ProtectedRoute";
 
 export default function App() {
   return (
-    <div className="bg-gray-100 min-h-screen font-sans">
-      <Navbar />
-      <main className="p-4 sm:p-6 lg:p-8">
-        <Routes>
-          {/* Public Route */}
-          <Route path="/login" element={<LoginPage />} />
+    <div
+      className="relative min-h-screen font-sans bg-cover bg-center"
+      style={{
+        backgroundImage: "url('https://assets.promediateknologi.id/crop/0x0:0x0/0x0/webp/photo/jawapos/2020/02/BPS-Jawa-Pos.jpg')"
+      }}
+    >
+      {/* Overlay semi-transparent */}
+      <div className="absolute inset-0 bg-black bg-opacity-30 z-0" />
 
-          {/* Protected Routes */}
-          <Route
-            path="/publications"
-            element={
-              <ProtectedRoute>
-                <PublicationListPage />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/publications/add"
-            element={
-              <ProtectedRoute>
-                <AddPublicationPage />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/publications/edit/:id"
-            element={
-              <ProtectedRoute>
-                <EditPublicationPage />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/publications/detail/:id"
-            element={
-              <ProtectedRoute>
-                <PublicationDetailPage />
-              </ProtectedRoute>
-            }
-          />
+      {/* Konten utama */}
+      <div className="relative z-10 min-h-screen">
+        <Navbar />
+        <main className="p-4 sm:p-6 lg:p-8">
+          <Routes>
+            {/* Public Route */}
+            <Route path="/login" element={<LoginPage />} />
 
-          {/* Redirect Routes */}
-          <Route path="/" element={<Navigate to="/publications" replace />} />
-          <Route path="*" element={<Navigate to="/publications" replace />} />
-        </Routes>
-      </main>
-      <Footer />
+            {/* Protected Routes */}
+            <Route
+              path="/publications"
+              element={
+                <ProtectedRoute>
+                  <PublicationListPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/publications/add"
+              element={
+                <ProtectedRoute>
+                  <AddPublicationPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/publications/edit/:id"
+              element={
+                <ProtectedRoute>
+                  <EditPublicationPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/publications/detail/:id"
+              element={
+                <ProtectedRoute>
+                  <PublicationDetailPage />
+                </ProtectedRoute>
+              }
+            />
+
+            {/* Redirect Routes */}
+            <Route path="/" element={<Navigate to="/publications" replace />} />
+            <Route path="*" element={<Navigate to="/publications" replace />} />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
     </div>
   );
 }
