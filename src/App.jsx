@@ -20,11 +20,11 @@ export default function App() {
     <div
       className="relative min-h-screen font-sans bg-cover bg-center"
       style={{
-        backgroundImage: "url('https://assets.promediateknologi.id/crop/0x0:0x0/0x0/webp/photo/jawapos/2020/02/BPS-Jawa-Pos.jpg')"
+        backgroundImage: "url('https://ppid.bps.go.id/upload/img/kantor_bps_pusat.jpg')"
       }}
     >
       {/* Overlay semi-transparent */}
-      <div className="absolute inset-0 bg-black bg-opacity-30 z-0" />
+      <div className="absolute inset-0 bg-black bg-opacity-20 z-0" />
 
       {/* Konten utama */}
       <div className="relative z-10 min-h-screen">
