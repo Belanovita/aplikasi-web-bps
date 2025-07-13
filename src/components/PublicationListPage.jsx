@@ -50,25 +50,27 @@ export default function PublicationListPage() {
                     onError={e => { e.target.onerror = null; e.target.src = 'https://placehold.co/100x140/cccccc/ffffff?text=Error'; }}
                   />
                 </td>
-                <td className="px-6 py-4 text-center space-x-2">
-                  <button
-                    className="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded text-xs font-semibold"
-                    onClick={() => navigate(`/publications/edit/${pub.id}`)}
-                  >
-                    Edit
-                  </button>
-                  <button
-                    className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded text-xs font-semibold"
-                    onClick={() => navigate(`/publications/detail/${pub.id}`)}
-                  >
-                    Detail
-                  </button>
-                  <button
-                    className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded text-xs font-semibold"
-                    onClick={() => handleDelete(pub.id)}
-                  >
-                    Hapus
-                  </button>
+                <td className="px-6 py-4 text-center">
+                  <div className="flex flex-col sm:flex-row justify-center items-center gap-2">
+                    <button
+                      className="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded text-xs font-semibold"
+                      onClick={() => navigate(`/publications/edit/${pub.id}`)}
+                    >
+                      Edit
+                    </button>
+                    <button
+                      className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded text-xs font-semibold"
+                      onClick={() => navigate(`/publications/detail/${pub.id}`)}
+                    >
+                      Detail
+                    </button>
+                    <button
+                      className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded text-xs font-semibold"
+                      onClick={() => handleDelete(pub.id)}
+                    >
+                      Hapus
+                    </button>
+                  </div>
                 </td>
               </tr>
             ))}

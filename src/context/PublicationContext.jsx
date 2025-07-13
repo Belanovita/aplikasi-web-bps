@@ -46,8 +46,14 @@ const PublicationProvider = ({ children }) => {
         );
     };
 
-    const deletePublication = (id) => {
-        setPublications((prev) => prev.filter((pub) => pub.id !== id));
+    const deletePublication = async (id) => {
+        try {
+            await publicationService.deletePublication(id);
+            setPublications((prev) => prev.filter((pub) => pub.id !== id));
+        } catch (err) {
+            setError(err.message);
+            throw err;
+        }
     };
 
     return (
